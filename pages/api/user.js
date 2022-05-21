@@ -1,0 +1,14 @@
+export default function handler(req, res) {
+  const options = {
+    method: 'GET',
+    mode: 'no-cors',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      Authorization: `eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjY5YTNmYzcwZWQyMDJmOWU2NDJkMjAwNzhmMTk1MTVkOGM2ZWM3YzA3M2U1MGMxMTg3ZGM4N2UwOWU0NmQwYjkzODYzZjVmZDIyNTZlMWU2In0.eyJhdWQiOiJkMDkyYjBjZjQwZTM3MjZiZDkxZWIxNDAxZGVmMTNiMyIsImp0aSI6IjY5YTNmYzcwZWQyMDJmOWU2NDJkMjAwNzhmMTk1MTVkOGM2ZWM3YzA3M2U1MGMxMTg3ZGM4N2UwOWU0NmQwYjkzODYzZjVmZDIyNTZlMWU2IiwiaWF0IjoxNjUzMTQ3NDkxLCJuYmYiOjE2NTMxNDc0OTEsImV4cCI6MTY1NTgyNTg5MSwic3ViIjoiMTUwNTYxNzkiLCJzY29wZXMiOltdfQ.HnfvuHYHTPJqLXv5QQJDQLS-j_8EXZo3EJZa_KOQ6Nv7uM64fqIeQs3uxXhiQm3eZwdc0l-r1klIZ_AzM-dJLIy7gQ3k7tjzOZZGAgNnE00j2-ecCEU8D2EjBbU1Gkad8BU7R-3AzvCSnA0SB_62wIp9_5jdCbpTifAPdbnXZENdYzgviyfkWnN1xyQO7zskHO_FSwRwwZ-Sn0fCA-ER9mQyyh4yeuEPeo-gJD7feM2G8KNsxZme9fIRx5-OnEDnquxFw9iQ6khsC1C3NLITW8mCBkPUN2PuOvRaiCCxRdGk71-v6xdELAqCbmLvxOJQujVPgackZYJnqg9_hKoRhg.eyJhdWQiOiJkMDkyYjBjZjQwZTM3MjZiZDkxZWIxNDAxZGVmMTNiMyIsImp0aSI6ImYyNjgwOTQ1ZDhkNDE2MjEyZmZhODg2NGZlODM2YWY1ZmJiMDI0ZDI5M2Y2ZDNmNGQ5N2Q0OTg3ODVkYWVjMGJmNDRmODg1OWQzYmY4MzhkIiwiaWF0IjoxNjUzMTQ0NzM0LCJuYmYiOjE2NTMxNDQ3MzQsImV4cCI6MTY1NTgyMzEzNCwic3ViIjoiMTUwNTYxNzkiLCJzY29wZXMiOltdfQ.an53OP89Kc_KsJp-tAFRWashtdBxv0iZZNwnnLlilk38_iNbmlWrBsAWlRT7m4slOnhGMyHczsfm-HPrUME3Lu5F65mCwOKxj-rED-Tex2_oOwM2QOMt8iRiXK5e0QzstruvHcmoucEpCQRSamVxCGMXJJc_739vhfvJpfkJZRdznnuFvGWT5WYIoo-e-KfEPIOYOhA9aGkluJXbQID8IX4hjSYP0CRotrJqy4ssup1PsY160XKxiNN06fDE0i2_uwQlyNd7usyBoPoQnWYTx5l0HXeoZYCBDkQ5Q8OXkoZe6hiNKh5Kr9CoScX2YNSCcvWduA9V5nR6e6ypbQsNFQ`,
+    },
+  };
+
+  fetch('https://api.myanimelist.net/v2/users/ZeroCrystal', options)
+    .then((response) => response.json())
+    .then((data) => res.status(200).json(data));
+}

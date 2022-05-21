@@ -1,10 +1,40 @@
+import { url } from 'utils/loginUrl';
 import SearchIcon from './SearchIcon';
-import { v4 as uuidv4 } from 'uuid';
 import styles from './styles.module.css';
+import Link from 'next/link';
 import { token } from 'utils/token';
+import useLocalStorage from 'hooks/useLocalStorage';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 
 const Header = () => {
-  const url = `https://myanimelist.net/v1/oauth2/authorize?response_type=code&client_id=d092b0cf40e3726bd91eb1401def13b3&code_challenge=${token}&state=${uuidv4()}`;
+  const [user, setUser] = useState(null);
+  const [tokenVerifier, setTokenVerifier] = useLocalStorage(
+    'tokenVerifier',
+    token
+  );
+  const router = useRouter();
+
+  const code = router?.query?.code;
+
+  const handleClick = () => {
+    setTokenVerifier(token);
+  };
+
+  useEffect(() => {
+    if (tokenVerifier && code && !user) {
+      fetch(`http://localhost:3000/api/${code}/${tokenVerifier}/userToken`)
+        .then((res) => res.json())
+        .then(setUser);
+    }
+  }, [code, setTokenVerifier, tokenVerifier, user]);
+
+  console.log(user);
+
+  useEffect(() => {
+    if (user) {
+    }
+  }, [user]);
 
   return (
     <div className={styles.headerContainer}>
@@ -57,9 +87,11 @@ const Header = () => {
         </li>
       </ul>
       <div>
-        <a className={styles.buttonLogin} href={url}>
-          Login
-        </a>
+        <Link passHref href={url}>
+          <button onClick={handleClick} className={styles.buttonLogin}>
+            Login
+          </button>
+        </Link>
       </div>
     </div>
   );
