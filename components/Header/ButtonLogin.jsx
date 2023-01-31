@@ -1,8 +1,9 @@
 import styles from './styles.module.css';
 import Link from 'next/link';
 import { url } from 'utils/loginUrl';
+import {token} from 'util/token' 
 
-const ButtonLogin = ({ token }) => {
+const ButtonLogin = () => {
   const [, setTokenVerifier] = useLocalStorage('tokenVerifier', token);
 
   const handleClick = () => {

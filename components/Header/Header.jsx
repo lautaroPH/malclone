@@ -38,6 +38,7 @@ const Header = () => {
         <SearchInput />
       </div>
       <OptionsLIst />
+      <ButtonLogin />
       {user ? <h1>{user?.name}</h1> : <ButtonLogin token={token} />}
     </div>
   );
